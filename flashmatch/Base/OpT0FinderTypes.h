@@ -261,6 +261,32 @@ namespace flashmatch {
       source_type = kUnknownAncestor;
     }
   };
+  
+  /// Struct to represent an optical flash
+  struct CRTHit_t {
+  public:
+
+    std::vector<double> crthit_v; ///< Collection of CRT hits
+    UShort_t id;
+    ULong_t ts0_s;
+    Double_t ts0_s_corr, ts0_ns_corr, ts0_ns;
+    Double_t ts1_ns;
+    Int_t plane;
+    double x,y,z;             ///< Flash position
+    double x_err,y_err,z_err; ///< Flash position error
+    std::string tagger;
+    ID_t idx;                 ///< index from original larlite vector
+
+    /// Default ctor assigns invalid values
+    CRTHit_t() : crthit_v() {
+      x = y = z = kINVALID_DOUBLE;
+      x_err = y_err = z_err = kINVALID_DOUBLE;
+      ts0_ns = ts0_s_corr = ts0_ns_corr = ts1_ns = kINVALID_DOUBLE;
+      plane = -1;
+      tagger = "";
+      idx = kINVALID_ID;
+    }
+  };
 
   namespace msg {
     /// Verbosity message level
